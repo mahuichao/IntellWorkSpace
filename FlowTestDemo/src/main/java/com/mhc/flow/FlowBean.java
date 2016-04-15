@@ -7,12 +7,19 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 /**
+ * è‡ªå®šä¹‰Beanç±»ï¼Œå®ç°æ¥å£WritableComparable
+ * è¿™æ ·å½“mapå†™å‡ºæ—¶ï¼Œä¸ç®¡æ˜¯åºåˆ—åŒ–è¿˜æ˜¯ååºåˆ—åŒ–éƒ½
+ * ä¼šæŒ‰ç…§æˆ‘ä»¬ç»™å®šçš„é€»è¾‘è¿›è¡Œ
  * Created by Administrator on 2016/4/14.
  */
 public class FlowBean implements WritableComparable<FlowBean> {
-    private static long upload; //  ÉÏĞĞÁ÷Á¿
-    private static long dnload; //  ÏÂĞĞÁ÷Á¿
-    private static long counter;  // ¼ÆÊıÆ÷
+    private static long upload;
+    private static long dnload;
+    private static long counter;
+
+    public FlowBean() {
+
+    }
 
     public FlowBean(long upload, long dnload) {
         this.upload = upload;
@@ -26,10 +33,6 @@ public class FlowBean implements WritableComparable<FlowBean> {
         this.counter = upload + dnload;
     }
 
-    public FlowBean() {
-
-
-    }
 
     public static long getDnload() {
         return dnload;
@@ -55,10 +58,8 @@ public class FlowBean implements WritableComparable<FlowBean> {
         FlowBean.counter = counter;
     }
 
-
     /**
-     * ĞòÁĞ»¯·½·¨
-     *
+     * åºåˆ—åŒ–
      * @param dataOutput
      * @throws IOException
      */
@@ -69,9 +70,7 @@ public class FlowBean implements WritableComparable<FlowBean> {
     }
 
     /**
-     * ·´ĞòÁĞ»¯·½·¨
-     * ×¢Òâ£º·´ĞòÁĞ»¯µÄË³ĞòÓëĞòÁĞ»¯ÍêÈ«Ò»ÖÂ
-     *
+     * ååºåˆ—åŒ–
      * @param dataInput
      * @throws IOException
      */
@@ -86,6 +85,11 @@ public class FlowBean implements WritableComparable<FlowBean> {
         return upload + "\t" + dnload + "\t" + counter + "\r\n";
     }
 
+    /**
+     * æ¯”è¾ƒé€»è¾‘
+     * @param o
+     * @return
+     */
     public int compareTo(FlowBean o) {
         return this.counter > o.getCounter() ? -1 : 1;
     }

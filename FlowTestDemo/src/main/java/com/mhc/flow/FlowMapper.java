@@ -7,6 +7,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import java.io.IOException;
 
 /**
+ * Mapper类，用来对数据进行读取，把同类key放入到一起发送给reduce
  * Created by Administrator on 2016/4/14.
  */
 public class FlowMapper extends Mapper<LongWritable, Text, Text, FlowBean> {

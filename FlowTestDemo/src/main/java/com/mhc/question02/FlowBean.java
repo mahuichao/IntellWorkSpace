@@ -7,19 +7,23 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 /**
+ * è‡ªå®šä¹‰Beanç±»ï¼ŒåŒä¹‹å‰æ‰€è®²
  * Created by Administrator on 2016/4/14.
  */
-public class FlowBean  implements WritableComparable<FlowBean> {
-    private  long upload; //  ÉÏĞĞÁ÷Á¿
-    private  long dnload; //  ÏÂĞĞÁ÷Á¿
-    private  long counter;  // ¼ÆÊıÆ÷
+public class FlowBean implements WritableComparable<FlowBean> {
+    private long upload;
+    private long dnload;
+    private long counter;
+
     public FlowBean() {
     }
+
     public FlowBean(long upload, long dnload) {
         this.upload = upload;
         this.dnload = dnload;
         this.counter = upload + dnload;
     }
+
     public void set(long upload, long dnload) {
         this.upload = upload;
         this.dnload = dnload;
@@ -51,25 +55,12 @@ public class FlowBean  implements WritableComparable<FlowBean> {
         this.counter = counter;
     }
 
-    /**
-     * ĞòÁĞ»¯·½·¨
-     *
-     * @param dataOutput
-     * @throws IOException
-     */
     public void write(DataOutput dataOutput) throws IOException {
         dataOutput.writeLong(upload);
         dataOutput.writeLong(dnload);
         dataOutput.writeLong(counter);
     }
 
-    /**
-     * ·´ĞòÁĞ»¯·½·¨
-     * ×¢Òâ£º·´ĞòÁĞ»¯µÄË³ĞòÓëĞòÁĞ»¯ÍêÈ«Ò»ÖÂ
-     *
-     * @param dataInput
-     * @throws IOException
-     */
     public void readFields(DataInput dataInput) throws IOException {
         upload = dataInput.readLong();
         dnload = dataInput.readLong();

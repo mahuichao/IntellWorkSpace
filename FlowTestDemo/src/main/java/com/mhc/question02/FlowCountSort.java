@@ -42,7 +42,9 @@ public class FlowCountSort {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-
+        /**
+         * 采用本地运行模式
+         */
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf);
 
@@ -55,8 +57,8 @@ public class FlowCountSort {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(FlowBean.class);
 
-        FileInputFormat.setInputPaths(job, new Path("D:/input.txt"));
-        Path outPath = new Path("D:/output");
+        FileInputFormat.setInputPaths(job, new Path("/FlowInput/"));
+        Path outPath = new Path("/FlowInput/output");
         FileSystem fs = FileSystem.get(conf);
         if (fs.exists(outPath)) {
             fs.delete(outPath, true);

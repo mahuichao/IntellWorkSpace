@@ -6,6 +6,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 
 /**
+ * 对数据进行处理输出结果的Reduce类
  * Created by Administrator on 2016/4/14.
  */
 public class FlowReducer extends Reducer<Text, FlowBean, Text, FlowBean> {
