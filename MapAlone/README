@@ -1,0 +1,3 @@
+这个Demo主要实现逻辑：
+使用本地文件字典导入mapper，从而增加效率
+把pdts的内容按照orders中的相应pid进行整合，结果要求oerders中含有pdts中的内容
