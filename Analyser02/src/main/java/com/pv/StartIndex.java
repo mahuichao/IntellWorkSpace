@@ -1,4 +1,4 @@
-package com.index;
+package com.pv;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
@@ -11,20 +11,20 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import java.io.IOException;
 
 /**
- * Created by Administrator on 2016/4/21.
+ * Created by Administrator on 2016/4/23.
  */
 public class StartIndex {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf);
-        job.setMapperClass(LogMapper.class);
-        job.setReducerClass(LogReducer.class);
+        job.setMapperClass(PageViewsMapper.class);
+        job.setReducerClass(PageViewsReducer.class);
 
         job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(Loggers.class);
+        job.setMapOutputValueClass(PvLoggers.class);
 
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(Loggers.class);
+        job.setOutputValueClass(PvLoggers.class);
 
         FileInputFormat.setInputPaths(job, new Path("D:/input"));
         FileSystem fileSystem = FileSystem.get(conf);

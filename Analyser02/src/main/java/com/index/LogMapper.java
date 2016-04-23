@@ -39,7 +39,7 @@ public class LogMapper extends Mapper<LongWritable, Text, Text, Loggers> {
         SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Map<String, String> result = new HashMap<String, String>();
         //正则表达式
-        String regex = "(\\d+\\.\\d+\\.\\d+\\.\\d+).*\\[(.*?)\\]\\s+.*?\\s(.*?)\\s.*?\\s\"(.*?)\"\\s";
+        String regex = "(\\d+\\.\\d+\\.\\d+\\.\\d+).*\\[(.*?)\\]\\s+\"(.*?)\".*?\\s\"(.*?)\"\\s"; //(\d+\.\d+\.\d+\.\d+).*\[(.*?)\]\s+.*?\s(.*?)\s.*?\s"(.*?)"\s
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(line);
         if (matcher.find()) {
@@ -48,7 +48,7 @@ public class LogMapper extends Mapper<LongWritable, Text, Text, Loggers> {
             String specDate = format2.format(date);
             result.put("ip", matcher.group(1));
             result.put("date", specDate);
-            result.put("url", matcher.group(3));
+            result.put("url", (matcher.group(3).equals("-")||matcher.group(3).equals("")) ? "-" : matcher.group(3).split(" ")[1]);
             result.put("referal", matcher.group(4));
         }
         return result;
