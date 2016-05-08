@@ -2,8 +2,7 @@ package com.mhc.com.mhc.bean;
 
 /**
  * Describe: 请补充类描述
- * Author:   maoxiangyi
- * Domain:   www.itcast.cn
+ * Author:   马慧超
  * Data:     2015/11/11.
  */
 public class App {
